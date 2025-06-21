@@ -155,7 +155,7 @@ const ResumeForm = ({ formData, setFormData }) => {
     const dataToSend = formatDataForBackend(formData);
 
     try {
-      const response = await fetch('https://resume-builder-api-r6ts.onrender.com', {
+      const response = await fetch('https://resume-builder-api-r6ts.onrender.com/api/resumes', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
