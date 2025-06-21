@@ -1,0 +1,67 @@
+/* src/components/ResumePreview.module.css */
+
+.preview {
+  padding: 25mm;
+  font-family: 'Inter', sans-serif;
+  color: #333;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+/* Resume Section Styles */
+.section {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+.sectionTitle {
+  font-size: 1.4em;
+  color: #007bff;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 5px;
+}
+
+/* Individual Entry Styles (for Education, Experience, Certificates) */
+.entry {
+  margin-bottom: 15px;
+  page-break-inside: avoid;
+}
+
+.entryTitle {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 2px;
+  color: #333;
+}
+
+.entrySubtitle {
+  font-size: 0.95em;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.entryDescription {
+  font-size: 0.9em;
+  white-space: pre-wrap;
+}
+
+/* Basic Contact Info & Name */
+.name {
+  font-size: 2.5em;
+  text-align: center;
+  margin-bottom: 5px;
+  color: #222;
+}
+
+.contact {
+  text-align: center;
+  font-size: 0.9em;
+  color: #555;
+  margin-bottom: 20px;
+}

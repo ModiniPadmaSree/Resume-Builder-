@@ -1,0 +1,145 @@
+/* src/components/ResumeForm.module.css */
+
+.form {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 30px;
+}
+
+.form h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 25px;
+  font-size: 1.8em;
+}
+
+.form label {
+  display: block;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #555;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form textarea {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+.form textarea {
+  resize: vertical;
+}
+
+.section {
+  border: 1px dashed #ccc;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.section h3 {
+  font-size: 1.3em;
+  color: #007bff;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.entryBlock {
+  border: 1px solid #eee;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.entryBlock h4 {
+  font-size: 1.1em;
+  color: #444;
+  margin-top: 0;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+
+.addBtn,
+.removeBtn,
+.saveBtn {
+  display: block;
+  width: auto;
+  margin: 15px auto 5px auto;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.addBtn {
+  background-color: #28a745;
+  color: white;
+}
+
+.addBtn:hover {
+  background-color: #218838;
+}
+
+.removeBtn {
+  background-color: #dc3545;
+  color: white;
+  margin-top: 10px;
+}
+
+.removeBtn:hover {
+  background-color: #c82333;
+}
+
+.saveBtn {
+  background-color: #007bff;
+  color: white;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.saveBtn:hover {
+  background-color: #0056b3;
+}
+
+.message {
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #e9f7ef;
+  color: #28a745;
+  border: 1px solid #28a745;
+}
+
+.required {
+  color: red;
+  margin-left: 2px;
+}
+
+.dateInputs {
+  display: flex;
+  gap: 10px;
+}
+
+.dateInputs label {
+  flex: 1;
+}
+
+.dateInputs input {
+  width: calc(100% - 20px);
+}
