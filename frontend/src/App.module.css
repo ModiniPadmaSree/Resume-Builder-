@@ -1,0 +1,52 @@
+/* src/App.module.css */
+
+.container {
+  display: flex;
+  flex-direction: column; /* Stack form, preview, and button vertically */
+  align-items: center; /* Center items horizontally */
+  min-height: 100vh; /* Ensure the container takes at least the full viewport height */
+  padding: 20px;
+  background-color: #eef2f5; /* Light background for the overall page */
+  box-sizing: border-box;
+}
+
+/* Styles for the div that acts as the "paper" holding the ResumePreview */
+.resumePaper {
+  /* Set explicit A4 dimensions for the preview container */
+  width: 210mm; /* A4 width in portrait mode */
+  min-height: 297mm; /* A4 height in portrait mode. Use min-height to allow content to expand */
+  
+  background-color: white; /* White background for the paper effect */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  margin: 30px 0; /* Vertical spacing from form/button */
+  box-sizing: border-box; /* Include padding/border in total width/height */
+
+  /* Optional: For responsive behavior on smaller screens */
+  @media (max-width: 900px) {
+    width: 90vw; /* Take 90% of viewport width */
+    min-height: auto; /* Let height adjust naturally */
+    box-shadow: none; /* Remove shadow on small screens for cleaner look */
+  }
+}
+
+.downloadBtn {
+  margin-top: 30px;
+  padding: 12px 25px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.downloadBtn:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.downloadBtn:active {
+  transform: translateY(0);
+}
