@@ -16,14 +16,27 @@ const app = express();
 // Enable CORS for all incoming requests
 app.use(
   cors({
-    origin: [
-      'http://localhost:3000',
-      'https://resume-builder-pi-khaki.vercel.app'
-    ],
+    origin: (origin, callback) => {
+      const allowedOrigins = [
+        'http://localhost:3000',
+        'https://resume-builder-pi-khaki.vercel.app'
+      ];
+
+      // allow non-browser requests (Postman, Docker, server-to-server)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
   })
 );
+
 
 app.use(express.json()); // Enable Express to parse JSON formatted request bodies
 
