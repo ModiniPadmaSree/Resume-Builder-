@@ -13,15 +13,18 @@ const resumeRoutes = require('./routes/resumeRoutes');
 const app = express();
 
 // Middleware Setup
+// Enable CORS for all incoming requests
 app.use(
   cors({
     origin: [
       'http://localhost:3000',
-      'https://resume-builder-pi-khaki.vercel.app/'
+      'https://resume-builder-pi-khaki.vercel.app'
     ],
-    credentials: true
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   })
-);// Enable CORS for all incoming requests
+);
+
 app.use(express.json()); // Enable Express to parse JSON formatted request bodies
 
 // Define a simple root route to confirm the API is running
