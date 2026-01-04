@@ -155,7 +155,7 @@ const ResumeForm = ({ formData, setFormData }) => {
     const dataToSend = formatDataForBackend(formData);
 
     try {
-      const response = await fetch('http://localhost:5000/api/resumes', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/resumes`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
