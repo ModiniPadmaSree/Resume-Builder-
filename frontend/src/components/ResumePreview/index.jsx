@@ -1,17 +1,16 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import styles from './ResumePreview.module.css';
 
-const ResumePreview = ({ formData }) => {
+const ResumePreview = forwardRef(({ formData }, ref) => {
   return (
-    <div className={styles.preview}>
-      {/* Name and Contact Info */}
+    <div ref={ref} className={styles.preview}>
       <h1 className={styles.name}>{formData.name || 'Your Name'}</h1>
+
       <p className={styles.contact}>
-        {formData.email || 'you@example.com'} | {formData.phone || '+91-0000000000'}
+        {formData.email} | {formData.phone}
         {formData.title && ` | ${formData.title}`}
       </p>
 
-      {/* Summary Section */}
       {formData.summary && (
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Summary</h2>
@@ -19,48 +18,42 @@ const ResumePreview = ({ formData }) => {
         </section>
       )}
 
-      {/* Education Section - iterates over the array */}
-      {formData.education && formData.education.length > 0 && (
+      {formData.education?.length > 0 && (
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Education</h2>
-          {formData.education.map((edu, index) => (
-            <div key={index} className={styles.entry}>
-              <h3 className={styles.entryTitle}>{edu.course || 'Course/Degree'}</h3>
+          {formData.education.map((edu, i) => (
+            <div key={i} className={styles.entry}>
+              <h3 className={styles.entryTitle}>{edu.course}</h3>
               <p className={styles.entrySubtitle}>
-                {edu.collegeName || 'Institution'} | {edu.startYear} - {edu.endYear}
-                {edu.score && ` | Score: ${edu.score}`} {/* Display score if available */}
+                {edu.collegeName} | {edu.startYear} – {edu.endYear}
               </p>
-              {edu.description && <p className={styles.entryDescription}>{edu.description}</p>}
             </div>
           ))}
         </section>
       )}
 
-      {/* Experience Section - iterates over the array */}
-      {formData.experience && formData.experience.length > 0 && (
+      {formData.experience?.length > 0 && (
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Experience</h2>
-          {formData.experience.map((exp, index) => (
-            <div key={index} className={styles.entry}>
-              <h3 className={styles.entryTitle}>{exp.role || 'Job Title'}</h3>
+          {formData.experience.map((exp, i) => (
+            <div key={i} className={styles.entry}>
+              <h3 className={styles.entryTitle}>{exp.role}</h3>
               <p className={styles.entrySubtitle}>
-                {exp.companyName || 'Company Name'} | {exp.startDate} - {exp.endDate}
+                {exp.companyName} | {exp.startDate} – {exp.endDate}
               </p>
-              {exp.description && <p className={styles.entryDescription}>{exp.description}</p>}
             </div>
           ))}
         </section>
       )}
 
-      {/* New Certificates Section - iterates over the array */}
-      {formData.certificates && formData.certificates.length > 0 && (
+      {formData.certificates?.length > 0 && (
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Certificates</h2>
-          {formData.certificates.map((cert, index) => (
-            <div key={index} className={styles.entry}>
-              <h3 className={styles.entryTitle}>{cert.name || 'Certificate Name'}</h3>
+          {formData.certificates.map((cert, i) => (
+            <div key={i} className={styles.entry}>
+              <h3 className={styles.entryTitle}>{cert.name}</h3>
               <p className={styles.entrySubtitle}>
-                {cert.issuingOrganization || 'Issuing Organization'}
+                {cert.issuingOrganization}
                 {cert.date && ` | ${cert.date}`}
               </p>
             </div>
@@ -68,7 +61,6 @@ const ResumePreview = ({ formData }) => {
         </section>
       )}
 
-      {/* Skills Section */}
       {formData.skills && (
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Skills</h2>
@@ -77,6 +69,6 @@ const ResumePreview = ({ formData }) => {
       )}
     </div>
   );
-};
+});
 
 export default ResumePreview;

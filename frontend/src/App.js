@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import { useReactToPrint } from 'react-to-print';
 import ResumeForm from './components/ResumeForm';
 import ResumePreview from './components/ResumePreview';
-import { generatePDF } from './utils/pdfGenerator.js';
 import styles from './App.module.css';
 
 function App() {
@@ -13,21 +13,37 @@ function App() {
     summary: '',
     education: [],
     experience: [],
-    certificates: [], // Initialize certificates as an empty array
+    certificates: [],
     skills: '',
   });
 
-  const previewRef = useRef();
+  const previewRef = useRef(null);
+
+  const handlePrint = useReactToPrint({
+    contentRef: previewRef, // ✅ THIS IS WHAT YOUR VERSION NEEDS
+    documentTitle: 'resume',
+    pageStyle: `
+      @page {
+        size: A4;
+        margin: 0;
+      }
+      body {
+        margin: 0;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    `,
+  });
 
   return (
     <div className={styles.container}>
       <ResumeForm formData={formData} setFormData={setFormData} />
-      
-      <div ref={previewRef} className={styles.resumePaper}>
-        <ResumePreview formData={formData} />
+
+      <div className={styles.resumePaper}>
+        <ResumePreview ref={previewRef} formData={formData} />
       </div>
-      
-      <button className={styles.downloadBtn} onClick={() => generatePDF(previewRef.current)}>
+
+      <button className={styles.downloadBtn} onClick={handlePrint}>
         Download as PDF
       </button>
     </div>
