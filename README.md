@@ -46,4 +46,4 @@ This project is built using the following technologies and tools:
 
 ## 📦 Project Structure
 
-The project is organized as a monorepo, containing both the frontend and backend applications in separate subdirectories:
+The project is organized as a monorepo, containing both the frontend and backend applications in separate subdirectories:  frontend, backend
