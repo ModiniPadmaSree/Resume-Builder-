@@ -1,0 +1,30 @@
+.wrapper {
+  margin: 6px 0 10px;
+}
+
+.aiBtn {
+  background: linear-gradient(135deg, #6d28d9, #4f46e5);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.aiBtn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.aiBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #dc2626;
+  font-size: 0.8rem;
+  margin-top: 4px;
+}

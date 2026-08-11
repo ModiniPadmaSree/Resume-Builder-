@@ -1,0 +1,74 @@
+.panel {
+  max-width: 700px;
+  margin: 24px auto;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #fafafa;
+}
+
+.panel h3 {
+  margin-top: 0;
+}
+
+.jdInput {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.reviewBtn {
+  margin-top: 10px;
+  background: #4f46e5;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.reviewBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error {
+  color: #dc2626;
+  margin-top: 8px;
+}
+
+.results {
+  margin-top: 16px;
+}
+
+.scoreRow {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.scoreLabel {
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.scoreValue {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #4f46e5;
+}
+
+.results h4 {
+  margin-bottom: 4px;
+}
+
+.results ul {
+  margin-top: 0;
+  padding-left: 20px;
+}

@@ -2,6 +2,9 @@ import React, { useRef, useState } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import ResumeForm from './components/ResumeForm';
 import ResumePreview from './components/ResumePreview';
+import ResumeReview from './components/ResumeReview';
+import AIChatAssistant from './components/AIChatAssistant';
+import { formatResumeData } from './utils/formatResumeData';
 import styles from './App.module.css';
 
 function App() {
@@ -20,7 +23,7 @@ function App() {
   const previewRef = useRef(null);
 
   const handlePrint = useReactToPrint({
-    contentRef: previewRef, // ✅ THIS IS WHAT YOUR VERSION NEEDS
+    contentRef: previewRef, 
     documentTitle: 'resume',
     pageStyle: `
       @page {
@@ -46,6 +49,10 @@ function App() {
       <button className={styles.downloadBtn} onClick={handlePrint}>
         Download as PDF
       </button>
+
+      <ResumeReview formData={formatResumeData(formData)} />
+
+      <AIChatAssistant formData={formData} setFormData={setFormData} />
     </div>
   );
 }

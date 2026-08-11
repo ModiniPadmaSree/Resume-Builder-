@@ -8,36 +8,13 @@ dotenv.config();
 
 // Import the resume routes
 const resumeRoutes = require('./routes/resumeRoutes');
+const aiRoutes = require('./routes/aiRoutes');
 
 // Initialize the Express application
 const app = express();
 
 // Middleware Setup
-// Enable CORS for all incoming requests
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      const allowedOrigins = [
-        'http://localhost:3000',
-        'https://resume-builder-pi-khaki.vercel.app'
-      ];
-
-      // allow non-browser requests (Postman, Docker, server-to-server)
-      if (!origin) return callback(null, true);
-
-      if (allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
-  })
-);
-
-
+app.use(cors()); // Enable CORS for all incoming requests
 app.use(express.json()); // Enable Express to parse JSON formatted request bodies
 
 // Define a simple root route to confirm the API is running
@@ -48,7 +25,7 @@ app.get('/', (req, res) => {
 // Mount the resume routes
 // All requests to /api/resumes will be handled by resumeRoutes
 app.use('/api/resumes', resumeRoutes);
-
+app.use('/api/ai', aiRoutes);
 // Define the port the server will listen on
 // It tries to get the port from environment variables (e.g., process.env.PORT)
 // or defaults to 5000 if not specified
@@ -68,3 +45,4 @@ mongoose.connect(process.env.MONGO_URI)
     console.error('MongoDB connection error:', err.message);
     process.exit(1); // Exit with a failure code
   });
+

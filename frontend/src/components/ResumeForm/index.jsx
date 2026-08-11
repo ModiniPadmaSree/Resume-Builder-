@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './ResumeForm.module.css';
 import Suggestions from '../Suggestions';
-
+import AIWriter from '../AIWriter';
 const ResumeForm = ({ formData, setFormData }) => {
   const [currentField, setCurrentField] = useState('');
   const [message, setMessage] = useState('');
@@ -201,10 +201,17 @@ const ResumeForm = ({ formData, setFormData }) => {
 
       {/* Summary Section */}
       <label>
-        Summary
-        <textarea name="summary" value={formData.summary} onChange={handleChange} onFocus={() => setCurrentField('summary')} rows="4" />
-        {currentField === 'summary' && <Suggestions field="summary" />}
-      </label>
+  Summary
+  <textarea name="summary" value={formData.summary} onChange={handleChange} onFocus={() => setCurrentField('summary')} rows="4" />
+  {currentField === 'summary' && <Suggestions field="summary" />}
+  {currentField === 'summary' && (
+    <AIWriter
+      field="summary"
+      context={formData.title || formData.name || ''}
+      onGenerated={(text) => setFormData((prev) => ({ ...prev, summary: text }))}
+    />
+  )}
+</label>
 
       {/* Dynamic Education Section */}
       <section className={styles.section}>
