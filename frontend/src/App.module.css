@@ -1,52 +1,717 @@
-/* src/App.module.css */
+/* =========================================
+   RESUME AI — MAIN APPLICATION
+   ========================================= */
 
-.container {
-  display: flex;
-  flex-direction: column; /* Stack form, preview, and button vertically */
-  align-items: center; /* Center items horizontally */
-  min-height: 100vh; /* Ensure the container takes at least the full viewport height */
-  padding: 20px;
-  background-color: #eef2f5; /* Light background for the overall page */
-  box-sizing: border-box;
+.app {
+  min-height: 100vh;
+  background: #f5f7fb;
+  color: #111827;
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 }
 
-/* Styles for the div that acts as the "paper" holding the ResumePreview */
-.resumePaper {
-  /* Set explicit A4 dimensions for the preview container */
-  width: 210mm; /* A4 width in portrait mode */
-  min-height: 297mm; /* A4 height in portrait mode. Use min-height to allow content to expand */
-  
-  background-color: white; /* White background for the paper effect */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-  margin: 30px 0; /* Vertical spacing from form/button */
-  box-sizing: border-box; /* Include padding/border in total width/height */
 
-  /* Optional: For responsive behavior on smaller screens */
-  @media (max-width: 900px) {
-    width: 90vw; /* Take 90% of viewport width */
-    min-height: auto; /* Let height adjust naturally */
-    box-shadow: none; /* Remove shadow on small screens for cleaner look */
-  }
+/* =========================================
+   NAVBAR
+   ========================================= */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  height: 68px;
+
+  background: rgba(255, 255, 255, 0.94);
+
+  border-bottom: 1px solid #e5e7eb;
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.navbarInner {
+  width: min(1440px, calc(100% - 48px));
+  height: 100%;
+
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+/* =========================================
+   BRAND
+   ========================================= */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 0;
+
+  background: none;
+  border: none;
+
+  color: #111827;
+
+  font-size: 1.1rem;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+.brandMark {
+  width: 35px;
+  height: 35px;
+
+  display: grid;
+  place-items: center;
+
+  color: white;
+
+  background: linear-gradient(
+    135deg,
+    #4f46e5,
+    #7c3aed
+  );
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 6px 15px rgba(79, 70, 229, 0.25);
+}
+
+.brandText {
+  letter-spacing: -0.03em;
+}
+
+
+/* =========================================
+   NAV LINKS
+   ========================================= */
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.navLink {
+  padding: 8px 14px;
+
+  color: #64748b;
+
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+
+  font-size: 0.86rem;
+  font-weight: 650;
+
+  cursor: pointer;
+
+  transition: 0.18s ease;
+}
+
+.navLink:hover {
+  color: #111827;
+  background: #f8fafc;
+}
+
+.navLink.active {
+  color: #4f46e5;
+  background: #eef2ff;
+}
+
+
+/* =========================================
+   NAV ACTIONS
+   ========================================= */
+
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.previewBtn,
+.downloadBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 9px 13px;
+
+  border-radius: 9px;
+
+  font-size: 0.82rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.18s ease;
+}
+
+.previewBtn {
+  color: #374151;
+  background: white;
+  border: 1px solid #d1d5db;
+}
+
+.previewBtn:hover {
+  background: #f8fafc;
 }
 
 .downloadBtn {
-  margin-top: 30px;
-  padding: 12px 25px;
-  background-color: #007bff;
   color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1.1em;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: #111827;
+  border: 1px solid #111827;
 }
 
 .downloadBtn:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);
+  background: #1f2937;
+  transform: translateY(-1px);
 }
 
-.downloadBtn:active {
-  transform: translateY(0);
+.profileButton {
+  width: 34px;
+  height: 34px;
+
+  display: grid;
+  place-items: center;
+
+  margin-left: 4px;
+
+  color: #4338ca;
+  background: #eef2ff;
+
+  border: 1px solid #ddd6fe;
+  border-radius: 50%;
+
+  font-size: 0.8rem;
+  font-weight: 750;
+}
+
+
+/* =========================================
+   HERO
+   ========================================= */
+
+.hero {
+  width: min(1440px, calc(100% - 48px));
+
+  margin: auto;
+
+  padding: 42px 0 28px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  margin-bottom: 11px;
+  padding: 6px 10px;
+
+  color: #4f46e5;
+  background: #eef2ff;
+
+  border: 1px solid #e0e7ff;
+  border-radius: 999px;
+
+  font-size: 0.69rem;
+  font-weight: 750;
+
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.hero h1 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: clamp(1.9rem, 3vw, 2.55rem);
+  font-weight: 800;
+
+  line-height: 1.1;
+  letter-spacing: -0.045em;
+}
+
+.hero p {
+  max-width: 670px;
+
+  margin: 11px 0 0;
+
+  color: #64748b;
+
+  font-size: 0.96rem;
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   WORKSPACE
+   ========================================= */
+
+.workspace {
+  width: min(1440px, calc(100% - 48px));
+
+  margin: auto;
+  padding-bottom: 55px;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(420px, 0.88fr)
+    minmax(540px, 1.12fr);
+
+  gap: 24px;
+
+  align-items: start;
+}
+
+
+/* =========================================
+   EDITOR PANEL
+   ========================================= */
+
+.editorPanel {
+  min-width: 0;
+
+  background: white;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 8px 25px rgba(15, 23, 42, 0.055);
+}
+
+.editorHeader {
+  min-height: 82px;
+
+  padding: 18px 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  background: white;
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.editorHeader h2 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 0.98rem;
+  font-weight: 750;
+}
+
+.editorHeader p {
+  margin: 4px 0 0;
+
+  color: #94a3b8;
+
+  font-size: 0.74rem;
+}
+
+.editorBody {
+  padding: 0;
+}
+
+
+/* =========================================
+   COMPLETION
+   ========================================= */
+
+.completion {
+  min-width: 90px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  color: #4f46e5;
+
+  font-size: 0.72rem;
+  font-weight: 750;
+
+  text-align: right;
+}
+
+.progressTrack {
+  width: 90px;
+  height: 5px;
+
+  overflow: hidden;
+
+  background: #e5e7eb;
+
+  border-radius: 999px;
+}
+
+.progressBar {
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    #4f46e5,
+    #7c3aed
+  );
+
+  border-radius: inherit;
+
+  transition: width 0.3s ease;
+}
+
+
+/* =========================================
+   LIVE PREVIEW
+   ========================================= */
+
+.previewPanel {
+  position: sticky;
+  top: 91px;
+
+  min-width: 0;
+
+  background: #e9edf3;
+
+  border: 1px solid #dce2ea;
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 12px 35px rgba(15, 23, 42, 0.07);
+}
+
+.previewHeader {
+  height: 58px;
+
+  padding: 0 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: rgba(255, 255, 255, 0.96);
+
+  border-bottom: 1px solid #e2e8f0;
+
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+
+  position: relative;
+  z-index: 2;
+}
+
+.previewTitle {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  color: #0f172a;
+
+  font-size: 0.88rem;
+  font-weight: 750;
+}
+
+.liveIndicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 4px 8px;
+
+  color: #15803d;
+  background: #f0fdf4;
+
+  border: 1px solid #dcfce7;
+  border-radius: 999px;
+
+  font-size: 0.66rem;
+  font-weight: 700;
+}
+.liveDot {
+  width: 6px;
+  height: 6px;
+
+  background: #22c55e;
+
+  border-radius: 50%;
+
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.12);
+}
+
+
+/* =========================================
+   PREVIEW CONTROLS
+   ========================================= */
+
+.previewControls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.previewControl,
+.zoomValue {
+  height: 30px;
+
+  display: grid;
+  place-items: center;
+
+  color: #64748b;
+  background: #ffffff;
+
+  border: 1px solid #e2e8f0;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.previewControl {
+  width: 30px;
+
+  border-radius: 8px;
+
+  font-size: 0.95rem;
+}
+
+.zoomValue {
+  min-width: 52px;
+
+  padding: 0 8px;
+
+  border-radius: 8px;
+
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.previewControl:hover,
+.zoomValue:hover {
+  color: #4338ca;
+  background: #f5f3ff;
+  border-color: #ddd6fe;
+}
+
+.previewControl:active {
+  transform: scale(0.95);
+}
+
+
+/* =========================================
+   PREVIEW CANVAS
+   ========================================= */
+
+.previewCanvas {
+  min-height: calc(100vh - 230px);
+
+  padding: 38px 28px 55px;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  overflow: auto;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      #f8fafc 0%,
+      #eef1f5 55%,
+      #e7ebf0 100%
+    );
+
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.previewCanvas::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+.previewCanvas::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.previewCanvas::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+
+.resumeScale {
+  flex: 0 0 auto;
+
+  width: 794px;
+
+  transform-origin: top center;
+
+  transition: transform 0.2s ease;
+}
+.resumeScale > * {
+  width: 794px;
+  min-height: 1123px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 18px 45px rgba(15, 23, 42, 0.14),
+    0 4px 12px rgba(15, 23, 42, 0.08);
+
+  border-radius: 2px;
+}
+
+
+/* =========================================
+   AI REVIEW
+   ========================================= */
+
+.reviewSection {
+  width: min(1440px, calc(100% - 48px));
+
+  margin: 0 auto;
+
+  padding: 25px 0 70px;
+}
+
+.sectionHeading {
+  margin-bottom: 20px;
+}
+
+.sectionEyebrow {
+  margin-bottom: 7px;
+
+  color: #4f46e5;
+
+  font-size: 0.7rem;
+  font-weight: 800;
+
+  letter-spacing: 0.08em;
+}
+
+.sectionHeading h2 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 1.55rem;
+  font-weight: 800;
+
+  letter-spacing: -0.03em;
+}
+
+.sectionHeading p {
+  max-width: 650px;
+
+  margin: 7px 0 0;
+
+  color: #64748b;
+
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 1150px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .previewPanel {
+    position: relative;
+    top: auto;
+  }
+
+  .previewCanvas {
+    min-height: 650px;
+  }
+}
+
+@media (max-width: 760px) {
+
+  .navbarInner,
+  .hero,
+  .workspace,
+  .reviewSection {
+    width: calc(100% - 28px);
+  }
+
+  .navLinks {
+    display: none;
+  }
+
+  .previewBtn {
+    display: none;
+  }
+
+  .hero {
+    padding-top: 30px;
+  }
+
+  .workspace {
+    gap: 16px;
+  }
+
+  .editorHeader {
+    padding: 16px;
+  }
+
+  .previewCanvas {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .downloadBtn {
+    padding: 8px 10px;
+
+    font-size: 0;
+  }
+
+  .downloadBtn::before {
+    content: "↓";
+
+    font-size: 1rem;
+  }
+
+  .profileButton {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .previewCanvas {
+    min-height: 520px;
+  }
 }

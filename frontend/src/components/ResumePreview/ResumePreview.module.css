@@ -1,31 +1,99 @@
+/* =========================================
+   RESUME PREVIEW
+   ========================================= */
+
 .preview {
-  padding: 20mm;
-  font-family: Inter, Arial, Helvetica, sans-serif;
-  color: #333;
-  line-height: 1.45;
+  width: 210mm;
+  min-height: 297mm;
   box-sizing: border-box;
+
+  padding: 18mm;
+
+  background: #ffffff;
+  color: #1f2937;
+
+  font-family:
+    Inter,
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  line-height: 1.5;
+
+  box-shadow:
+    0 8px 30px rgba(15, 23, 42, 0.08);
+
+  border: 1px solid #e5e7eb;
 }
 
-/* Header */
-.name {
-  font-size: 2.4em;
-  font-weight: 700;
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.header {
   text-align: center;
-  margin-bottom: 6px;
+  margin-bottom: 24px;
+}
+
+.name {
+  margin: 0 0 7px;
+
+  color: #111827;
+
+  font-size: 2.15rem;
+  font-weight: 800;
+
+  line-height: 1.15;
+  letter-spacing: -0.035em;
 }
 
 .contact {
-  text-align: center;
-  font-size: 0.95em;
-  color: #555;
-  margin-bottom: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+
+  color: #64748b;
+
+  font-size: 0.82rem;
+}
+.contactLink {
+  color: #4f46e5;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-/* Sections */
+.contactLink:hover {
+  text-decoration: underline;
+}
+.headerLink {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.headerLink:hover {
+  text-decoration: underline;
+}
+
+
+.separator {
+  color: #cbd5e1;
+}
+
+
+/* =========================================
+   SECTIONS
+   ========================================= */
+
 .section {
-  margin-bottom: 18px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .section:last-child {
@@ -33,43 +101,278 @@
 }
 
 .sectionTitle {
-  font-size: 1.35em;
-  font-weight: 600;
-  color: #007bff;
-  margin-bottom: 8px;
-  border-bottom: 2px solid #007bff;
-  padding-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  margin: 0 0 11px;
+
+  color: #3730a3;
+
+  font-size: 0.85rem;
+  font-weight: 800;
+
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }
 
-/* Entries */
+.sectionTitle::before {
+  content: "";
+
+  width: 4px;
+  height: 17px;
+
+  flex-shrink: 0;
+
+  border-radius: 999px;
+
+  background: #6366f1;
+}
+
+
+/* =========================================
+   ENTRIES
+   ========================================= */
+
 .entry {
-  margin-bottom: 12px;
+  margin-bottom: 15px;
+}
+
+.entry:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================================
+   LEFT / RIGHT ROW
+   ========================================= */
+
+.row {
+  width: 100%;
+
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.left {
+  min-width: 0;
+  flex: 1;
+}
+
+.right {
+  flex-shrink: 0;
+
+  text-align: right;
+}
+
+
+/* =========================================
+   EDUCATION / EXPERIENCE
+   ========================================= */
+
+.institution {
+  color: #1e293b;
+
+  font-size: 0.94rem;
+  font-weight: 700;
 }
 
 .entryTitle {
-  font-size: 1.05em;
+  margin-top: 3px;
+
+  color: #374151;
+
+  font-size: 0.86rem;
   font-weight: 600;
 }
 
-.entrySubtitle {
-  font-size: 0.95em;
-  color: #666;
+.date {
+  color: #64748b;
+
+  font-size: 0.78rem;
+  white-space: nowrap;
 }
-/* ================= PRINT PAGINATION CONTROL ================= */
+
+.score {
+  color: #374151;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+.description {
+  margin: 7px 0 0;
+
+  color: #4b5563;
+
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+
+/* =========================================
+   CERTIFICATES
+   ========================================= */
+
+.organization {
+  color: #64748b;
+
+  font-size: 0.8rem;
+
+  white-space: nowrap;
+}
+
+.certificateDate {
+  margin-top: 3px;
+
+  color: #94a3b8;
+
+  font-size: 0.76rem;
+
+  text-align: right;
+}
+
+
+/* =========================================
+   SUMMARY
+   ========================================= */
+
+.bodyText {
+  margin: 0;
+
+  color: #374151;
+
+  font-size: 0.84rem;
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   SKILLS
+   ========================================= */
+
+.skills {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 5px;
+
+  color: #374151;
+
+  font-size: 0.82rem;
+}
+
+.skillSeparator {
+  color: #94a3b8;
+}
+
+.skill {
+  color: #374151;
+}
+
+
+/* =========================================
+   PRINT
+   ========================================= */
 
 @media print {
-  section {
-    break-inside: avoid;
-    page-break-inside: avoid;
+
+  .preview {
+    width: 210mm;
+    min-height: 297mm;
+
+    padding: 18mm;
+
+    border: none;
+    box-shadow: none;
+
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 
-  h2, h3 {
-    break-after: avoid;
-    page-break-after: avoid;
+  .section,
+  .entry {
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 
   .sectionTitle {
     break-after: avoid;
     page-break-after: avoid;
   }
+
+  .row {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
+
+
+/* =========================================
+   SMALL SCREENS
+   ========================================= */
+
+@media (max-width: 700px) {
+
+  .preview {
+    padding: 28px 24px;
+  }
+
+  .name {
+    font-size: 1.75rem;
+  }
+
+  .row {
+    gap: 12px;
+  }
+
+  .institution {
+    font-size: 0.88rem;
+  }
+
+  .date {
+    font-size: 0.72rem;
+  }
+}/* =========================================
+   RESUME BULLET POINTS
+   ========================================= */
+
+.bulletList {
+  margin: 7px 0 0;
+  padding-left: 18px;
+
+  color: #374151;
+
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.bulletList li {
+  margin-bottom: 3px;
+  padding-left: 2px;
+}
+
+.bulletList li:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================================
+   PROJECT LINK
+   ========================================= */
+
+.projectLink {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.projectLink:hover {
+  text-decoration: underline;
 }

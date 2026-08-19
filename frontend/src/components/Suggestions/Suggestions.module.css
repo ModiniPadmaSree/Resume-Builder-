@@ -1,15 +1,33 @@
 .suggestions {
-  background-color: #f1f8ff;
-  border-left: 4px solid #007bff;
-  padding: 12px 16px;
-  border-radius: 6px;
-  margin-top: 10px;
+  margin-top: 12px;
+  padding: 15px 17px;
+
+  background: linear-gradient(
+    135deg,
+    #f5f3ff,
+    #eef2ff
+  );
+
+  border: 1px solid #ddd6fe;
+  border-radius: 11px;
 }
 
 .suggestions h4 {
-  font-size: 16px;
-  color: #007bff;
-  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  margin: 0 0 10px;
+
+  color: #4338ca;
+
+  font-size: 0.85rem;
+  font-weight: 750;
+}
+
+.suggestions h4::before {
+  content: "✦";
+  font-size: 0.8rem;
 }
 
 .suggestions ul {
@@ -18,7 +36,14 @@
 }
 
 .suggestions li {
-  font-size: 14px;
-  color: #333;
   margin-bottom: 6px;
+
+  color: #4b5563;
+
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.suggestions li:last-child {
+  margin-bottom: 0;
 }

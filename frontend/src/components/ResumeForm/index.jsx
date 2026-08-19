@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './ResumeForm.module.css';
 import Suggestions from '../Suggestions';
 import AIWriter from '../AIWriter';
+const API_URL=process.env.REACT_APP_API_URL || 'http://localhost:5000';
 const ResumeForm = ({ formData, setFormData }) => {
   const [currentField, setCurrentField] = useState('');
   const [message, setMessage] = useState('');
@@ -74,6 +75,52 @@ const ResumeForm = ({ formData, setFormData }) => {
       experience: prevData.experience.filter((_, i) => i !== index),
     }));
   };
+  // =========================================
+// PROJECT HANDLERS
+// =========================================
+
+const handleProjectChange = (index, e) => {
+  const { name, value } = e.target;
+
+  setFormData((prevData) => {
+    const projects = [...(prevData.projects || [])];
+
+    projects[index] = {
+      ...projects[index],
+      [name]: value,
+    };
+
+    return {
+      ...prevData,
+      projects,
+    };
+  });
+};
+
+const handleAddProject = () => {
+  setFormData((prevData) => ({
+    ...prevData,
+    projects: [
+      ...(prevData.projects || []),
+      {
+        name: '',
+        technologies: '',
+        link: '',
+        description: '',
+      },
+    ],
+  }));
+};
+
+const handleRemoveProject = (index) => {
+  setFormData((prevData) => ({
+    ...prevData,
+    projects: (prevData.projects || []).filter(
+      (_, i) => i !== index
+    ),
+  }));
+};
+
 
   // Handler for changes within Certificate entries
   const handleCertificateChange = (index, e) => {
@@ -107,6 +154,49 @@ const ResumeForm = ({ formData, setFormData }) => {
       certificates: prevData.certificates.filter((_, i) => i !== index),
     }));
   };
+  // =========================================
+// LINKS HANDLERS
+// =========================================
+
+const handleLinkChange = (index, e) => {
+  const { name, value } = e.target;
+
+  setFormData((prevData) => {
+    const links = [...(prevData.links || [])];
+
+    links[index] = {
+      ...links[index],
+      [name]: value,
+    };
+
+    return {
+      ...prevData,
+      links,
+    };
+  });
+};
+
+const handleAddLink = () => {
+  setFormData((prevData) => ({
+    ...prevData,
+    links: [
+      ...(prevData.links || []),
+      {
+        name: '',
+        url: '',
+      },
+    ],
+  }));
+};
+
+const handleRemoveLink = (index) => {
+  setFormData((prevData) => ({
+    ...prevData,
+    links: (prevData.links || []).filter(
+      (_, i) => i !== index
+    ),
+  }));
+};
 
   const formatDataForBackend = (data) => {
     const formattedEducation = data.education.map(edu => ({
@@ -123,7 +213,7 @@ const ResumeForm = ({ formData, setFormData }) => {
       years: `${exp.startDate || ''}-${exp.endDate || ''}`.trim().replace(/^-|-$/g, ''),
       description: exp.description,
     }));
-
+   
     // Format new certificates data
     const formattedCertificates = data.certificates.map(cert => ({
       name: cert.name,
@@ -135,17 +225,19 @@ const ResumeForm = ({ formData, setFormData }) => {
       ? data.skills.split(',').map(s => s.trim()).filter(s => s.length > 0)
       : [];
 
-    return {
-      name: data.name,
-      email: data.email,
-      phone: data.phone,
-      title: data.title,
-      summary: data.summary,
-      education: formattedEducation,
-      experience: formattedExperience,
-      certificates: formattedCertificates, // Include formatted certificates
-      skills: parsedSkills,
-    };
+ return {
+  name: data.name,
+  email: data.email,
+  phone: data.phone,
+  title: data.title,
+  summary: data.summary,
+  education: formattedEducation,
+  experience: formattedExperience,
+  certificates: formattedCertificates,
+  projects: data.projects || [],
+  skills: parsedSkills,
+  links: data.links || []
+};
   };
 
   const handleSubmit = async (e) => {
@@ -155,7 +247,7 @@ const ResumeForm = ({ formData, setFormData }) => {
     const dataToSend = formatDataForBackend(formData);
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/resumes`, {
+      const response = await fetch(`${API_URL}/api/resumes`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -295,6 +387,97 @@ const ResumeForm = ({ formData, setFormData }) => {
         </button>
         {currentField === 'experience' && <Suggestions field="experience" />}
       </section>
+      {/* =========================================
+    PROJECTS
+    ========================================= */}
+
+<section className={styles.section}>
+  <h3>Projects</h3>
+
+  {(formData.projects || []).map((project, index) => (
+    <div
+      key={index}
+      className={styles.entryBlock}
+    >
+      <h4>Project Entry #{index + 1}</h4>
+
+      <label>
+        Project Name
+        <input
+          type="text"
+          name="name"
+          value={project.name || ''}
+          onChange={(e) =>
+            handleProjectChange(index, e)
+          }
+          placeholder="e.g., Resume Builder AI"
+        />
+      </label>
+
+      <label>
+        Technologies
+        <input
+          type="text"
+          name="technologies"
+          value={project.technologies || ''}
+          onChange={(e) =>
+            handleProjectChange(index, e)
+          }
+          placeholder="React, Node.js, MongoDB"
+        />
+      </label>
+
+      <label>
+        Project Link
+        <input
+          type="text"
+          name="link"
+          value={project.link || ''}
+          onChange={(e) =>
+            handleProjectChange(index, e)
+          }
+          placeholder="GitHub / Live Demo URL"
+        />
+      </label>
+
+      <label>
+        Description
+        <textarea
+          name="description"
+          value={project.description || ''}
+          onChange={(e) =>
+            handleProjectChange(index, e)
+          }
+          rows="4"
+          placeholder="Describe the project, your contribution, and key achievements..."
+        />
+      </label>
+
+      <button
+        type="button"
+        onClick={() =>
+          handleRemoveProject(index)
+        }
+        className={styles.removeBtn}
+      >
+        Remove Project
+      </button>
+    </div>
+  ))}
+
+  <button
+    type="button"
+    onClick={handleAddProject}
+    className={styles.addBtn}
+  >
+    Add Project
+  </button>
+</section>
+{/* =========================================
+    LINKS
+    ========================================= */}
+
+
 
       {/* New Dynamic Certificates Section */}
       <section className={styles.section}>
@@ -332,6 +515,63 @@ const ResumeForm = ({ formData, setFormData }) => {
         <textarea name="skills" value={formData.skills} onChange={handleChange} onFocus={() => setCurrentField('skills')} rows="3" />
         {currentField === 'skills' && <Suggestions field="skills" />}
       </label>
+      
+      <section className={styles.section}>
+  <h3>Links</h3>
+
+  {(formData.links || []).map((link, index) => (
+    <div
+      key={index}
+      className={styles.entryBlock}
+    >
+      <h4>Link #{index + 1}</h4>
+
+      <label>
+        Link Name
+        <input
+          type="text"
+          name="name"
+          value={link.name || ''}
+          onChange={(e) =>
+            handleLinkChange(index, e)
+          }
+          placeholder="e.g., LinkedIn, GitHub, Portfolio, LeetCode"
+        />
+      </label>
+
+      <label>
+        URL
+        <input
+          type="text"
+          name="url"
+          value={link.url || ''}
+          onChange={(e) =>
+            handleLinkChange(index, e)
+          }
+          placeholder="https://..."
+        />
+      </label>
+
+      <button
+        type="button"
+        onClick={() =>
+          handleRemoveLink(index)
+        }
+        className={styles.removeBtn}
+      >
+        Remove Link
+      </button>
+    </div>
+  ))}
+
+  <button
+    type="button"
+    onClick={handleAddLink}
+    className={styles.addBtn}
+  >
+    + Add Link
+  </button>
+</section>
 
       {/* Submit Button and API Message */}
       <button type="submit" className={styles.saveBtn}>
