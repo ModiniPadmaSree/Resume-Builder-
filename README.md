@@ -31,6 +31,8 @@ This project is built using the following technologies and tools:
 * **Backend:**
     * **Node.js:** A JavaScript runtime environment.
     * **Express.js:** A fast, unopinionated, minimalist web framework for Node.js.
+
+
     * **MongoDB:** A NoSQL database for storing resume data.
     * **Mongoose:** An ODM (Object Data Modeling) library for MongoDB and Node.js.
     * **CORS:** Node.js middleware for enabling Cross-Origin Resource Sharing.
@@ -49,4 +51,5 @@ This project is built using the following technologies and tools:
 The project is organized as a monorepo, containing both the frontend and backend applications in separate subdirectories:  frontend, backend
 
 ## Demo video of application
-https://github.com/user-attachments/assets/ee6ac70e-1e19-4bd4-ab6f-fa0068c70320
+https://github.com/user-attachments/assets/ada8ec03-7704-42bc-8576-e88b4a695b16
+
