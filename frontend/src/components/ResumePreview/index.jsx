@@ -19,7 +19,17 @@ const renderBulletPoints = (text) => {
     </ul>
   );
 };
+const normalizeUrl = (url) => {
+  if (!url?.trim()) return '';
 
+  const trimmedUrl = url.trim();
+
+  if (/^https?:\/\//i.test(trimmedUrl)) {
+    return trimmedUrl;
+  }
+
+  return `https://${trimmedUrl}`;
+};
 const ResumePreview = forwardRef(({ formData }, ref) => {
   return (
     <div ref={ref} className={styles.preview}>
@@ -45,30 +55,28 @@ const ResumePreview = forwardRef(({ formData }, ref) => {
     <span>{formData.email}</span>
   )}
 
-  {formData.links?.map((link, index) => {
-    if (!link.name?.trim() || !link.url?.trim()) {
-      return null;
-    }
+ {formData.links?.map((link, index) => {
+  if (!link.name?.trim() || !link.url?.trim()) {
+    return null;
+  }
 
-    const url = link.url.startsWith('http')
-      ? link.url
-      : `https://${link.url}`;
+  const url = normalizeUrl(link.url);
 
-    return (
-      <React.Fragment key={index}>
-        <span className={styles.separator}>|</span>
+  return (
+    <React.Fragment key={index}>
+      <span className={styles.separator}>|</span>
 
-        <a
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.contactLink}
-        >
-          {link.name}
-        </a>
-      </React.Fragment>
-    );
-  })}
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.contactLink}
+      >
+        {link.name}
+      </a>
+    </React.Fragment>
+  );
+})}
 
 </div>
       </header>
@@ -247,27 +255,22 @@ const ResumePreview = forwardRef(({ formData }, ref) => {
         {/* Project name + technologies */}
         <div className={styles.row}>
           <div className={styles.left}>
-            {project.name && (
-              <div className={styles.institution}>
-                {project.link?.trim() ? (
-                  <a
-                    href={
-                      project.link.startsWith('http://') ||
-                      project.link.startsWith('https://')
-                        ? project.link
-                        : `https://${project.link}`
-                    }
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.projectLink}
-                  >
-                    {project.name}
-                  </a>
-                ) : (
-                  project.name
-                )}
-              </div>
-            )}
+{project.name && (
+  <div className={styles.institution}>
+    {project.link?.trim() ? (
+      <a
+        href={normalizeUrl(project.link)}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.projectLink}
+      >
+        {project.name}
+      </a>
+    ) : (
+      project.name
+    )}
+  </div>
+)}
           </div>
 
           <div className={styles.right}>

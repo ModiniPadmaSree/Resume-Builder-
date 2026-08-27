@@ -160,7 +160,27 @@
 
   transition: 0.18s ease;
 }
+.pdfHint {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
 
+  width: 230px;
+  padding: 8px 10px;
+
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+
+  color: #556479;
+  font-size: 0.72rem;
+  line-height: 1.35;
+  text-align: center;
+
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+
+  z-index: 20;
+}
 .previewBtn {
   color: #374151;
   background: white;

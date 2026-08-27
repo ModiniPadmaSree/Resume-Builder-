@@ -36,29 +36,70 @@ function App() {
      ========================================= */
 
   const handlePrint = useReactToPrint({
-    contentRef: previewRef,
-    documentTitle: 'resume',
-    pageStyle: `
-      @page {
-        size: A4;
-        margin: 0;
-      }
+  contentRef: previewRef,
+  documentTitle: 'resume',
 
-      html,
+  pageStyle: `
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: white;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* ===============================
+       CLICKABLE PDF LINKS
+       =============================== */
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+
+    a[href] {
+      pointer-events: auto;
+    }
+
+    /* ===============================
+       PRINT PAGINATION
+       =============================== */
+
+    .section {
+      break-inside: auto;
+    }
+
+    .entry {
+      break-inside: avoid;
+    }
+
+    .row {
+      break-inside: avoid;
+    }
+
+    .bulletList {
+      break-inside: auto;
+    }
+
+    @media print {
       body {
-        margin: 0;
-        padding: 0;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
+        background: white;
       }
-
-      @media print {
-        body {
-          background: white;
-        }
-      }
-    `,
-  });
+    }
+  `,
+});
 
   /* =========================================
      COMPLETION %
@@ -194,7 +235,8 @@ function App() {
             >
               ↓ Download PDF
             </button>
-
+<span className={styles.pdfHint}>
+ For clickable links, choose "Save as PDF"</span>
             <div className={styles.profileButton}>
               {formData.name
                 ? formData.name.charAt(0).toUpperCase()

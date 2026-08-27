@@ -92,8 +92,8 @@
 .section {
   margin-bottom: 20px;
   padding-bottom: 14px;
-
   border-bottom: 1px solid #e5e7eb;
+
 }
 
 .section:last-child {
@@ -278,10 +278,14 @@
 
 
 /* =========================================
-   PRINT
+   PDF / PRINT PAGINATION
    ========================================= */
 
 @media print {
+
+  /* -----------------------------------------
+     GENERAL
+     ----------------------------------------- */
 
   .preview {
     width: 210mm;
@@ -296,24 +300,133 @@
     print-color-adjust: exact;
   }
 
-  .section,
+
+  /* -----------------------------------------
+     SECTION HEADING
+
+     Never leave a heading as the last thing
+     on a page.
+     ----------------------------------------- */
+
+  .sectionTitle {
+    break-after: avoid-page;
+    page-break-after: avoid;
+
+    break-inside: avoid;
+    page-break-inside: avoid;
+
+    margin-bottom: 10px;
+  }
+
+
+  /* -----------------------------------------
+     SECTION
+
+     Sections are allowed to continue across
+     pages.
+     ----------------------------------------- */
+
+  .section {
+    break-inside: auto;
+    page-break-inside: auto;
+
+    /* Don't let a section start at the very
+       bottom with almost no content. */
+    padding-top: 4px;
+  }
+
+
+  /* -----------------------------------------
+     ENTRY
+
+     IMPORTANT:
+     Don't force the entire entry onto the
+     next page.
+
+     This allows long experiences/projects to
+     naturally continue across pages.
+     ----------------------------------------- */
+
   .entry {
+    break-inside: auto;
+    page-break-inside: auto;
+
+    orphans: 2;
+    widows: 2;
+  }
+
+
+  /* -----------------------------------------
+     ENTRY HEADER
+
+     Keep company/project name together with
+     its role/date/technology row.
+     ----------------------------------------- */
+
+  .entry > .row {
     break-inside: avoid;
     page-break-inside: avoid;
   }
 
-  .sectionTitle {
-    break-after: avoid;
+
+  /* -----------------------------------------
+     EXPERIENCE / PROJECT TITLE
+
+     Prevent a company/project name from being
+     separated from the first bullet.
+     ----------------------------------------- */
+
+  .entryTitle,
+  .institution {
+    break-after: avoid-page;
     page-break-after: avoid;
   }
+
+
+  /* -----------------------------------------
+     BULLETS
+
+     Don't leave a single bullet hanging
+     between pages.
+     ----------------------------------------- */
+
+  .bulletList {
+    margin-top: 4px;
+
+    break-inside: auto;
+    page-break-inside: auto;
+
+    orphans: 2;
+    widows: 2;
+  }
+
+
+  .bulletList li {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+
+  /* -----------------------------------------
+     TEXT
+     ----------------------------------------- */
+
+  .bodyText,
+  .description {
+    orphans: 2;
+    widows: 2;
+  }
+
+
+  /* -----------------------------------------
+     ROWS
+     ----------------------------------------- */
 
   .row {
     break-inside: avoid;
     page-break-inside: avoid;
   }
 }
-
-
 /* =========================================
    SMALL SCREENS
    ========================================= */
