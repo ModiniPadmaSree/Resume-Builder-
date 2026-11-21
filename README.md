@@ -1,4 +1,4 @@
-# My Resume Builder
+# AI Resume Builder
 A dynamic and intuitive web application that allows users to easily create, customize, and manage their professional resumes. Built with the MERN (MongoDB, Express.js, React, Node.js) stack, this project offers a seamless experience for generating polished, PDF-ready resumes.
 
 ---
