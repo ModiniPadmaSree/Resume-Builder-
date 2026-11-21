@@ -11,6 +11,7 @@ A dynamic and intuitive web application that allows users to easily create, cust
     * **Education:** Add multiple entries with Course/Degree, Institution, Years, and **Score (e.g., GPA/Percentage)**.
     * **Experience:** Add multiple work experiences with Company, Role, Dates, and Descriptions.
     * **Certificates:** Add multiple certification entries with Certificate Name, Issuing Organization, and Date.
+* **AI Assistant:** Enhance descriptions, reviews resume against job descriptions and suggest improvements using Groq AI.
 * **PDF Generation:** Download your complete resume as a print-ready PDF document, perfectly formatted to an A4 size.
 * **Data Persistence:** Save your resume data to a MongoDB database for future editing and retrieval.
 * **Monorepo Structure:** Organized into `frontend` (React) and `backend` (Node.js/Express) within a single repository for streamlined development.
@@ -31,7 +32,8 @@ This project is built using the following technologies and tools:
 * **Backend:**
     * **Node.js:** A JavaScript runtime environment.
     * **Express.js:** A fast, unopinionated, minimalist web framework for Node.js.
-
+* **AI:** Groq API used for AI assistance
+    
 
     * **MongoDB:** A NoSQL database for storing resume data.
     * **Mongoose:** An ODM (Object Data Modeling) library for MongoDB and Node.js.
